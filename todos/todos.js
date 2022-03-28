@@ -26,15 +26,21 @@ todoForm.addEventListener('submit', async (e) => {
 
 async function displayTodos() {
     // fetch the todos
-    
+    const todoList = await getTodos();
     // display the list of todos
+    for (let todo of todoList) {
+        const todoEl = renderTodo(todo);
+        // be sure to give each todo an event listener
+        // on click, complete that todo
+        todoEl.addEventListener('click', async () => {
 
-    // be sure to give each todo an event listener
-
-    // on click, complete that todo
+        });
+        todosEl.append(todoEl);
+    }
 }
 
 // add an on load listener that fetches and displays todos on load
+window.addEventListener('load', displayTodos());
 
 logoutButton.addEventListener('click', () => {
     logout();
@@ -43,6 +49,7 @@ logoutButton.addEventListener('click', () => {
 
 deleteButton.addEventListener('click', async () => {
     // delete all todos
-
+    await deleteAllTodos();
     // then refetch and display the updated list of todos
+    displayTodos();
 });
