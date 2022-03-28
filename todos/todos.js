@@ -25,6 +25,7 @@ todoForm.addEventListener('submit', async (e) => {
 });
 
 async function displayTodos() {
+    todosEl.textContent = '';
     // fetch the todos
     const todoList = await getTodos();
     // display the list of todos
@@ -33,7 +34,9 @@ async function displayTodos() {
         // be sure to give each todo an event listener
         // on click, complete that todo
         todoEl.addEventListener('click', async () => {
-
+            await completeTodo(todo.id);
+            console.log(todo);
+            displayTodos();
         });
         todosEl.append(todoEl);
     }
@@ -48,8 +51,10 @@ logoutButton.addEventListener('click', () => {
 
 
 deleteButton.addEventListener('click', async () => {
-    // delete all todos
-    await deleteAllTodos();
-    // then refetch and display the updated list of todos
-    displayTodos();
+    if (confirm('Are your sure you want to delete all todos?')) {
+        // delete all todos
+        await deleteAllTodos();
+        // then refetch and display the updated list of todos
+        displayTodos();
+    }
 });
