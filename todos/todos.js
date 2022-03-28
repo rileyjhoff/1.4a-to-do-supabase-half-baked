@@ -4,7 +4,8 @@ import {
     completeTodo,
     getTodos,
     logout,
-    deleteAllTodos, 
+    deleteAllTodos,
+    deleteTodo,
 } from '../fetch-utils.js';
 import { renderTodo } from '../render-utils.js';
 
@@ -33,12 +34,12 @@ async function displayTodos() {
     // display the list of todos
     for (let todo of todoList) {
         const todoEl = renderTodo(todo);
+        todoEl.id = todo.id;
         // be sure to give each todo an event listener
         // on click, complete that todo
         if (todo.complete === false) {
             todoEl.addEventListener('click', async () => {
                 await completeTodo(todo.id);
-                console.log(todo);
                 displayTodos();
             });
         }
@@ -46,6 +47,13 @@ async function displayTodos() {
     }
     loadingScreen.classList.toggle('hide');
 }
+
+document.addEventListener('click', async (e) => {
+    if (e.target.className === 'delete-todo') {
+        await deleteTodo(e.path[1].id);
+        displayTodos();
+    }
+});
 
 // add an on load listener that fetches and displays todos on load
 window.addEventListener('load', displayTodos());

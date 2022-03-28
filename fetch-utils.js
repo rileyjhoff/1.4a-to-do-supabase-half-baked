@@ -23,6 +23,16 @@ export async function deleteAllTodos() {
     return checkError(response);
 }
 
+export async function deleteTodo(id) {
+    // delete all todos for this user in supabase
+    const response = await client
+        .from('todos')
+        .delete()
+        .match({ id });
+
+    return checkError(response);
+}
+
 export async function getTodos() {
     // get all todos for this user from supabase
     const response = await client
