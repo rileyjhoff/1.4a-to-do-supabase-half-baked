@@ -41,8 +41,8 @@ You will be creating a to do list using Supabase. Users should only be able to p
 
 ## Order
 
-1. render function
-2. supabase CRUD functions
+1. supabase CRUD functions
+2. render function
 3. todo form event listener
 4. delete button event listener
 5. list of clickables for todo items
