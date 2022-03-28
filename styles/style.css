@@ -125,3 +125,23 @@ footer {
 .auth-container button {
     margin: 10px;
 }
+
+.loading-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+.hide {
+    display: none;
+}
+
+#loading-text {
+    font-size: 5rem;
+    color:white;
+}
