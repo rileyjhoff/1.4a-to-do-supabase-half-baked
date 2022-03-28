@@ -145,3 +145,7 @@ footer {
     font-size: 5rem;
     color:white;
 }
+
+button {
+    cursor: pointer;
+}

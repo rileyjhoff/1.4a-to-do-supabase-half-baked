@@ -35,11 +35,13 @@ async function displayTodos() {
         const todoEl = renderTodo(todo);
         // be sure to give each todo an event listener
         // on click, complete that todo
-        todoEl.addEventListener('click', async () => {
-            await completeTodo(todo.id);
-            console.log(todo);
-            displayTodos();
-        });
+        if (todo.complete === false) {
+            todoEl.addEventListener('click', async () => {
+                await completeTodo(todo.id);
+                console.log(todo);
+                displayTodos();
+            });
+        }
         todosEl.append(todoEl);
     }
     loadingScreen.classList.toggle('hide');
